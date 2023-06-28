@@ -19,8 +19,15 @@ export default{
 </script>
 
 <template>
-    <div class="card" >
+    <div>
+        <img :src="`${store.url}${cardProps.path}`" alt="">
         <h5>{{ cardProps.title }}</h5>
+        <div>{{ cardProps.description }}</div>
+        <div v-if="cardProps.type">{{ cardProps.type.name }}</div>
+        <ul class="card-text" v-if="cardProps.technologies">
+          <li v-for="(element, index) in cardProps.technologies" :key="index">{{ element.name}}</li>
+        </ul>
+
     </div>
 </template>
 
