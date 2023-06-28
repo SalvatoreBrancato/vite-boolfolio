@@ -8,7 +8,7 @@ export default{
 </script>
 
 <template>
-    <h1 class="animate__animated animate__bounce">Ciaoooooo</h1>
+    <h1 class="animate__animated animate__bounce text-primary">Ciaoooooo</h1>
 </template>
 
 <style lang="scss" scoped>
