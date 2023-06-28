@@ -1,7 +1,7 @@
 <script>
 import MainComp from './components/MainComp.vue';
 import {store} from './store'
-
+import axios from 'axios';
 
 
 export default{
@@ -10,10 +10,22 @@ export default{
     MainComp
 },
 data(){
-  return{
-    store
+    return{
+      store,
+      post:[]
+    }
+  },
+  mounted(){
+    this.getPosts()
+  },
+  methods: {
+    getPosts(){
+      axios.get('http://127.0.0.1:8000/api/posts')
+    .then(res => {
+        this.post = res.data.posts;
+      }) 
+    }
   }
-}
 }
 </script>
 
