@@ -16,9 +16,16 @@ data(){
      
     }
   },
+  watch: {
+    selectTechnology:{
+      handler: 'getPosts',
+      deep: true
+    }  	
+	},
   mounted(){
     this.getPosts();
     this.getTypes();
+    this.getTechnologies();
   },
   methods: {
     getPosts(){
@@ -27,6 +34,10 @@ data(){
       }
       if(this.store.selectType !=='all'){
         params.type_id = this.store.selectType
+      }
+
+      if ( this.store.selectTechnology.length > 0 ){
+	    params.technologies_ids = this.store.selectTechnology.join(',')
       }
       axios.get('http://127.0.0.1:8000/api/posts',{params})
       .then(res => {
@@ -53,6 +64,11 @@ data(){
       axios.get(`http://127.0.0.1:8000/api/types`).then(res => {
         this.store.types = res.data.types
       })
+    },
+    getTechnologies(){
+      axios.get('http://127.0.0.1:8000/api/technologies').then(res => {
+        this.store.technologies = res.data.technologies
+      })
     }
   }
 }
@@ -67,6 +83,15 @@ data(){
           </option>
       </select>
   </div>
+  <div class="mb-3">
+    <h2>Technologies</h2>
+    <div class="form-group" v-for="(elem, index) in this.store.technologies" :key="index">
+        <input type="checkbox" name="" id="elem.id" :value="elem.id" v-model="this.store.selectTechnology">
+        <label for="elem.id" class="ms-2">
+            {{ elem.name }}
+        </label>
+    </div>
+  </div>  
   <MainComp/>
   <div class="container">
     <nav aria-label="Page navigation example">
