@@ -24,17 +24,17 @@ export default{
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/" class="nav-link" >
+          <router-link :to="{name: 'home'}" class="nav-link" >
             Home
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link" >
+          <router-link :to="{name: 'about'}" class="nav-link" >
             About
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/contatti" class="nav-link" >
+          <router-link :to="{name: 'contatti'}" class="nav-link" >
             Contatti
           </router-link>
         </li>
